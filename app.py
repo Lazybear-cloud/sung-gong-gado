@@ -5,7 +5,7 @@ import pandas as pd
 st.set_page_config(layout="wide")
 
 # Load the Excel file
-file_path = 'C:/임형태/물건리스트.xlsx'
+file_path = '물건리스트.xlsx'
 df = pd.read_excel(file_path)
 
 # Streamlit app
