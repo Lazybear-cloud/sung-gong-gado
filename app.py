@@ -15,14 +15,10 @@ st.title("성공가도 경매 물건 리스트")
 st.write("전체 데이터 상위 100개 미리보기:")
 st.dataframe(df.head(100))
 
-
-
 # Sidebar inputs for filtering
 st.sidebar.header("검색 조건")
 type = st.sidebar.selectbox("종류", options=["아파트", "다세대/빌라", "오피스텔", "상업용기타", "주택", "근린주택", "다가구 주택", "근린상가", "근린시설"])
 region = st.sidebar.selectbox("지역", options=["서울", "경기", "인천"])
-
-
 
 
 
@@ -34,7 +30,6 @@ region1_options = sorted(region_filtered_df['시/구'].dropna().unique())  # "�
 region1 = st.sidebar.selectbox("시/구를 선택하세요", region1_options)
 
 
-
 # 선택한 "지역"에 따라 "구/동" 필터링
 region1_filtered_df = df[df['시/구'] == region1]  # "시/구" 열을 기준으로 필터링
 region2_options = ["전체"] + sorted(region1_filtered_df['구/동'].dropna().unique())  # "구/동" 값 정렬
@@ -44,10 +39,7 @@ region2 = st.sidebar.selectbox("구/동를 선택하세요", region2_options)
 
 
 # 인수액 필터링 조건 설정
-options = st.sidebar.multiselect(
-    "인수액 조건",
-    options=["인수액 : 없음", "임차인현황 자료가 없습니다."]
-)
+options = st.sidebar.multiselect("인수액 조건", options=["인수액 : 없음", "임차인현황 자료가 없습니다."])
 
 # 데이터 검색 버튼
 if st.sidebar.button("데이터 검색"):
