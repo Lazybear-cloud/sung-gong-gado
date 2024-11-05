@@ -55,5 +55,9 @@ if st.sidebar.button("데이터 검색"):
     # 필터링된 데이터 표시
     st.header("인수액이 없는 경매 물건 리스트")
     st.dataframe(filtered_data)
+
+    # 필터링된 데이터의 행 수 출력
+    st.write(f"검색된 물건 개수: {filtered_data.shape[0]}개")
+
 else:
     st.write("검색 조건을 설정하고 '데이터 검색' 버튼을 눌러주세요.")
