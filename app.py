@@ -43,33 +43,27 @@ region2 = st.sidebar.selectbox("구/동를 선택하세요", region2_options)
 # 인수액 필터링 조건 설정
 options = st.sidebar.multiselect("인수액 조건", options=["인수액 : 없음", "임차인현황 자료가 없습니다."])
 
-# Session state 초기화
-if "dataframe" not in st.session_state:
-    st.session_state["dataframe"] = None
-
 # 데이터 검색 버튼
-if st.sidebar.button("검색"):
+#if st.sidebar.button("검색"):
     
-    # 조건을 동적으로 구성하여 입력된 값에 맞게 필터링
-    filtered_data = df[
-        (df["종류"].astype(str).str.contains(type, case=False, na=False)) &
-        (df["지역"].astype(str).str.contains(region, case=False, na=False)) &
-        (df["시/구"].astype(str).str.contains(region1, case=False, na=False)) &
-        ((True if region2 == "전체" else df["구/동"].astype(str).str.contains(region2, case=False, na=False))) &
-        ((True if not options else df["인수액"].isin(options)))  # 추가 텍스트 조건에 맞는 경우
-    ]
+# 조건을 동적으로 구성하여 입력된 값에 맞게 필터링
+filtered_data = df[
+    (df["종류"].astype(str).str.contains(type, case=False, na=False)) &
+    (df["지역"].astype(str).str.contains(region, case=False, na=False)) &
+    (df["시/구"].astype(str).str.contains(region1, case=False, na=False)) &
+    ((True if region2 == "전체" else df["구/동"].astype(str).str.contains(region2, case=False, na=False))) &
+    ((True if not options else df["인수액"].isin(options)))  # 추가 텍스트 조건에 맞는 경우
+]
 
-    st.session_state["dataframe"] = filtered_data
-    
-    # 필터링된 데이터 표시
-    st.header("인수액이 없는 경매 물건 리스트")
-    st.dataframe(filtered_data)
+# 필터링된 데이터 표시
+st.header("인수액이 없는 경매 물건 리스트")
+st.dataframe(filtered_data)
 
-    # 필터링된 데이터의 행 수 출력
-    st.write(f"검색된 물건 개수: {filtered_data.shape[0]}개")
+# 필터링된 데이터의 행 수 출력
+st.write(f"검색된 물건 개수: {filtered_data.shape[0]}개")
 
-else:
-    st.write("검색 조건을 설정하고 '데이터 검색' 버튼을 눌러주세요.")
+#else:
+#    st.write("검색 조건을 설정하고 '데이터 검색' 버튼을 눌러주세요.")
 
 
 
