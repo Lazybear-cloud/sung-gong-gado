@@ -43,8 +43,14 @@ region2 = st.sidebar.selectbox("구/동를 선택하세요", region2_options)
 # 인수액 필터링 조건 설정
 options = st.sidebar.multiselect("인수액 조건", options=["인수액 : 없음", "임차인현황 자료가 없습니다."])
 
+# Session state 초기화
+if "dataframe" not in st.session_state:
+    st.session_state["dataframe"] = None
+
 # 데이터 검색 버튼
-if st.sidebar.button("데이터 검색"):
+if st.sidebar.button("검색"):
+    st.session_state["dataframe"] = df
+    
     # 조건을 동적으로 구성하여 입력된 값에 맞게 필터링
     filtered_data = df[
         (df["종류"].astype(str).str.contains(type, case=False, na=False)) &
