@@ -11,7 +11,7 @@ file_path = '물건리스트.xlsx'
 df = pd.read_excel(file_path)
 
 # Streamlit app
-st.title("성공가도 경매 물건 리스트")
+st.title("성공가도 경매 물건 리스트📑")
 
 # 데이터 상위 100개 미리보기
 st.write("전체 데이터 상위 100개 미리보기:")
@@ -77,7 +77,7 @@ def calculate_monthly_payment(principal, annual_rate, months):
 st.write("---")
 
 # 제목
-st.title("수익률 계산기📠")
+st.title("수익률 계산기💸")
 
 
 # 연산 선택
