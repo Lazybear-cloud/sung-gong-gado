@@ -49,7 +49,6 @@ if "dataframe" not in st.session_state:
 
 # 데이터 검색 버튼
 if st.sidebar.button("검색"):
-    st.session_state["dataframe"] = df
     
     # 조건을 동적으로 구성하여 입력된 값에 맞게 필터링
     filtered_data = df[
@@ -60,6 +59,8 @@ if st.sidebar.button("검색"):
         ((True if not options else df["인수액"].isin(options)))  # 추가 텍스트 조건에 맞는 경우
     ]
 
+    st.session_state["dataframe"] = filtered_data
+    
     # 필터링된 데이터 표시
     st.header("인수액이 없는 경매 물건 리스트")
     st.dataframe(filtered_data)
