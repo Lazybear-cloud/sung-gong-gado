@@ -15,7 +15,7 @@ st.markdown(
     """
     <style>
     div[data-baseweb="select"] > div {
-        max-height: 300px; /* 드롭다운 높이 설정 */
+        max-height: 3000px; /* 드롭다운 높이 설정 */
         overflow-y: auto; /* 스크롤 활성화 */
     }
     </style>
