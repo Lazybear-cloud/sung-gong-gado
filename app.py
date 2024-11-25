@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import math
+
 
 # 페이지 설정: 와이드 모드로 설정
 st.set_page_config(layout="wide")
@@ -64,10 +66,8 @@ else:
 
 
 
-import streamlit as st
-import pandas as pd
-import math
 
+########################### 수익률 계산기 ###########################
 #원리금 상환 함수
 def calculate_monthly_payment(principal, annual_rate, months):
     monthly_rate = annual_rate / 12
@@ -77,7 +77,7 @@ def calculate_monthly_payment(principal, annual_rate, months):
 st.write("---")
 
 # 제목
-st.title("간단한 계산기 🧮")
+st.title("수익률 계산기📠")
 
 
 # 연산 선택
@@ -89,7 +89,7 @@ col1, col2, col3, col4 = st.columns([1,1,1,1])
 
 Appraisedvalue = col1.number_input("감정가", value=0, step=500000, format="%d")
 Bidprice = col2.number_input("입찰가", value=0, step=500000, format="%d")
-interestrate = col3.number_input("금리", value=0.0, step=0.1)
+interestrate = col3.number_input("금리", value=4.0, step=0.1)
 smalldeposit = col4.selectbox("소액임차보증금", ["55,000,000", "48,000,000", "28,000,000", "25,000,000"])
 
 Deposit = col1.selectbox("예상 보증금", ["5,000,000", "10,000,000", "20,000,000"])
