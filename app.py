@@ -16,7 +16,7 @@ st.markdown(
     <style>
     /* 드롭다운 메뉴의 높이 강제 조정 */
     div[data-baseweb="menu"] {
-        max-height: 300px !important; /* 드롭다운 최대 높이 설정 */
+        max-height: 3000px !important; /* 드롭다운 최대 높이 설정 */
         overflow-y: auto; /* 스크롤 활성화 */
     }
     </style>
