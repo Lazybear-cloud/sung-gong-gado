@@ -61,3 +61,209 @@ if st.sidebar.button("데이터 검색"):
 
 else:
     st.write("검색 조건을 설정하고 '데이터 검색' 버튼을 눌러주세요.")
+
+
+
+import streamlit as st
+import pandas as pd
+import math
+
+#원리금 상환 함수
+def calculate_monthly_payment(principal, annual_rate, months):
+    monthly_rate = annual_rate / 12
+    monthly_payment = principal * (monthly_rate * (1 + monthly_rate)**months) / ((1 + monthly_rate)**months - 1)
+    return monthly_payment
+
+st.write("---")
+
+# 제목
+st.title("간단한 계산기 🧮")
+
+
+# 연산 선택
+option = st.radio("대출 종류를 선택하세요.", ("주담대 MCG", "주담대 MCI", "사업자대출", "임대사업자대출"))
+
+
+# 입력 받기
+col1, col2, col3, col4 = st.columns([1,1,1,1])
+
+Appraisedvalue = col1.number_input("감정가", value=0, step=500000, format="%d")
+Bidprice = col2.number_input("입찰가", value=0, step=500000, format="%d")
+interestrate = col3.number_input("금리", value=0.0, step=0.1)
+smalldeposit = col4.selectbox("소액임차보증금", ["55,000,000", "48,000,000", "28,000,000", "25,000,000"])
+
+Deposit = col1.selectbox("예상 보증금", ["5,000,000", "10,000,000", "20,000,000"])
+rent = col2.selectbox("예상 월세", ["400,000", "450,000", "500,000", "550,000", "600,000", "650,000", "700,000", "750,000", "800,000", "850,000", "900,000", "950,000", "1,000,000"])
+Repaircost = col3.selectbox("예상 비용", ["3,000,000", "5,000,000", "7,000,000", "10,000,000"])
+
+
+#소액임차 보증금 정수화
+if smalldeposit == "55,000,000":
+    smalldeposit_cal = 55000000
+
+elif smalldeposit == "48,000,000":
+    smalldeposit_cal = 48000000
+
+elif smalldeposit == "28,000,000":
+    smalldeposit_cal = 28000000
+
+elif smalldeposit == "25,000,000":
+    smalldeposit_cal = 25000000
+
+#보증금 정수화
+if Deposit == "5,000,000":
+    Deposit_cal = 5000000
+
+elif Deposit == "10,000,000":
+    Deposit_cal = 10000000
+
+elif Deposit == "20,000,000":
+    Deposit_cal = 20000000
+
+#수리비 정수화
+if Repaircost == "3,000,000":
+    Repaircost_cal = 3000000
+
+elif Repaircost == "5,000,000":
+    Repaircost_cal = 5000000
+
+elif Repaircost == "7,000,000":
+    Repaircost_cal = 7000000
+
+elif Repaircost == "10,000,000":
+    Repaircost_cal = 10000000
+
+#월세 정수화
+if rent == "400,000":
+    rent_cal = 400000
+
+elif rent == "450,000":
+    rent_cal = 450000
+
+elif rent == "500,000":
+    rent_cal = 500000
+
+elif rent == "550,000":
+    rent_cal = 550000
+
+elif rent == "600,000":
+    rent_cal = 600000
+
+elif rent == "650,000":
+    rent_cal = 650000
+
+elif rent == "700,000":
+    rent_cal = 700000
+
+elif rent == "750,000":
+    rent_cal = 750000
+
+elif rent == "800,000":
+    rent_cal = 800000
+
+elif rent == "850,000":
+    rent_cal = 850000
+
+elif rent == "900,000":
+    rent_cal = 900000
+
+elif rent == "950,000":
+    rent_cal = 950000
+
+elif rent == "1,000,000":
+    rent_cal = 1000000
+
+elif rent == "1,050,000":
+    rent_cal = 1050000
+
+elif rent == "1,100,000":
+    rent_cal = 1100000
+
+elif rent == "1,150,000":
+    rent_cal = 1150000
+
+elif rent == "1,200,000":
+    rent_cal = 1200000
+
+#대출 금액 계산
+if option == "주담대 MCG":
+    loan = round(min(Appraisedvalue*0.6, Bidprice*0.8))
+    monthly_payment = math.ceil(calculate_monthly_payment(loan, interestrate/100, 480) / 1000)*1000
+
+elif option == "주담대 MCI":
+    loan = round(min(Appraisedvalue*0.6, Bidprice*0.8))
+    monthly_payment = math.ceil(calculate_monthly_payment(loan, interestrate/100, 360) / 1000)*1000
+
+elif option == "사업자대출":
+    loan = round(min(Appraisedvalue*0.6 - smalldeposit_cal, Bidprice*0.7))
+    monthly_payment = math.ceil((loan*interestrate/1200)  / 1000)*1000
+    
+elif option == "임대사업자대출":
+    loan = round(min(Appraisedvalue*0.6 - smalldeposit_cal, Bidprice*0.8))
+    monthly_payment = math.ceil((loan*interestrate/1200)  / 1000)*1000
+
+
+
+
+
+Total_investment_amount = (Bidprice + Repaircost_cal) - (loan + Deposit_cal)
+
+rate_of_return = round((rent_cal - monthly_payment)*1200 / Total_investment_amount, 1)
+net_rent = rent_cal - monthly_payment
+
+
+st.markdown("---")
+
+col1, col2 = st.columns([1,2])
+
+col1.subheader("수익률 계산")
+
+
+if rate_of_return >= 25:
+    col2.subheader("훌륭한 가격입니다!😆")
+
+elif rate_of_return >= 18:
+    col2.subheader("적정 가격입니다!😃")
+
+elif rate_of_return >= 15:
+    col2.subheader("약간 비싼 가격입니다...🤔")
+
+else:
+    col2.subheader("다시 생각해보세요!😥")
+
+
+
+
+col1, col2, col3 = st.columns([1,1,1])
+col1.write(f"감정가 : {Appraisedvalue:,}원")
+col1.write(f"입찰가 : {Bidprice:,}원")
+col1.write(f"금리 : {interestrate:.2f}%")
+col1.write(f"소액임차보증금 : {smalldeposit:}원")
+
+col2.markdown(f'<p style="color:green; font-weight:bold;">대출 가능 금액 : {loan:,}원</p>', unsafe_allow_html=True)
+
+if option == "주담대 MCG":
+    col2.write(f"대출 이자 + 원금 : {monthly_payment:,}원/월")
+
+elif option == "주담대 MCI":
+    col2.write(f"대출 이자 + 원금 : {monthly_payment:,}원/월")
+
+elif option == "사업자대출":
+    col2.write(f"대출 이자 : {monthly_payment:,}원/월")
+    
+elif option == "임대사업자대출":
+    col2.write(f"대출 이자 : {monthly_payment:,}원/월")
+
+
+
+
+col3.markdown(f'<p style="color:green; font-weight:bold;">총 투자금액 : {Total_investment_amount:,}원</p>', unsafe_allow_html=True)
+col3.write(f"순월세 : {net_rent:,}원/월")
+
+if rate_of_return >= 20:
+    col3.markdown(f'<p style="color:red;">월세 수익률 : {rate_of_return:,}%</p>', unsafe_allow_html=True)
+
+elif rate_of_return < 20:
+    col3.markdown(f'<p style="color:blue; font-weight:bold;">월세 수익률 : {rate_of_return:,}%</p>', unsafe_allow_html=True)
+
+col3.write(f"투자금 회수 기간 : {round(Total_investment_amount/(net_rent*12), 1):,}년")
