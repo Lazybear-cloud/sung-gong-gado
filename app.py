@@ -10,6 +10,22 @@ st.set_page_config(layout="wide")
 file_path = '물건리스트.xlsx'
 df = pd.read_excel(file_path)
 
+# CSS 삽입
+st.markdown(
+    """
+    <style>
+    div[data-baseweb="select"] > div {
+        max-height: 300px; /* 드롭다운 높이 설정 */
+        overflow-y: auto; /* 스크롤 활성화 */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+
+
+
 # Streamlit app
 st.title("성공가도 경매 물건 리스트📑")
 
