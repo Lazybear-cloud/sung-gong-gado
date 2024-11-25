@@ -186,11 +186,11 @@ elif rent == "1,200,000":
     rent_cal = 1200000
 
 #대출 금액 계산
-if option == "주담대 MCG":
+if option == "주택담보대출 MCG":
     loan = round(min(Appraisedvalue*0.6, Bidprice*0.8))
     monthly_payment = math.ceil(calculate_monthly_payment(loan, interestrate/100, 480) / 1000)*1000
 
-elif option == "주담대 MCI":
+elif option == "주택담보대출 MCI":
     loan = round(min(Appraisedvalue*0.6, Bidprice*0.8))
     monthly_payment = math.ceil(calculate_monthly_payment(loan, interestrate/100, 360) / 1000)*1000
 
@@ -242,10 +242,10 @@ col1.write(f"소액임차보증금 : {smalldeposit:}원")
 
 col2.markdown(f'<p style="color:green; font-weight:bold;">대출 가능 금액 : {loan:,}원</p>', unsafe_allow_html=True)
 
-if option == "주담대 MCG":
+if option == "주택담보대출 MCG":
     col2.write(f"대출 이자 + 원금 : {monthly_payment:,}원/월")
 
-elif option == "주담대 MCI":
+elif option == "주택담보대출 MCI":
     col2.write(f"대출 이자 + 원금 : {monthly_payment:,}원/월")
 
 elif option == "사업자대출":
