@@ -292,21 +292,18 @@ col3.write(f"투자금 회수 기간 : {round(Total_investment_amount/(net_rent*
 import streamlit as st
 from streamlit.components.v1 import html
 
-# 쿠팡 다이나믹 배너 HTML 코드
-coupang_banner_code = """
-<script src="https://ads-partners.coupang.com/g.js"></script>
-<script>
-    new PartnersCoupang.G({
-        "id": 823643,
-        "template": "carousel",
-        "trackingCode": "AF1208190",
-        "width": "680",
-        "height": "140",
-        "tsource": ""
-    });
-</script>
+# 쿠팡 다이나믹 배너 iframe 삽입
+iframe_code = """
+<iframe src="https://ads-partners.coupang.com/widgets.html?id=823643&template=carousel&trackingCode=AF1208190&subId=&width=680&height=140&tsource=" 
+        width="680" 
+        height="140" 
+        frameborder="0" 
+        scrolling="no" 
+        referrerpolicy="unsafe-url">
+</iframe>
 """
 
-# Streamlit에서 배너 삽입
-html(coupang_banner_code, height=140)  # height는 배너의 크기에 맞춰 설정
+# Streamlit에서 iframe 코드 삽입
+html(iframe_code, height=150)  # height는 iframe 높이와 동일하게 설정
+
 
