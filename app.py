@@ -287,3 +287,26 @@ elif rate_of_return < 20:
     col3.markdown(f'<p style="color:blue; font-weight:bold;">월세 수익률 : {rate_of_return:,}%</p>', unsafe_allow_html=True)
 
 col3.write(f"투자금 회수 기간 : {round(Total_investment_amount/(net_rent*12), 1):,}년")
+
+
+import streamlit as st
+from streamlit.components.v1 import html
+
+# 쿠팡 다이나믹 배너 HTML 코드
+coupang_banner_code = """
+<script src="https://ads-partners.coupang.com/g.js"></script>
+<script>
+    new PartnersCoupang.G({
+        "id": 823643,
+        "template": "carousel",
+        "trackingCode": "AF1208190",
+        "width": "680",
+        "height": "140",
+        "tsource": ""
+    });
+</script>
+"""
+
+# Streamlit에서 배너 삽입
+html(coupang_banner_code, height=140)  # height는 배너의 크기에 맞춰 설정
+
