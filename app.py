@@ -287,23 +287,3 @@ elif rate_of_return < 20:
     col3.markdown(f'<p style="color:blue; font-weight:bold;">월세 수익률 : {rate_of_return:,}%</p>', unsafe_allow_html=True)
 
 col3.write(f"투자금 회수 기간 : {round(Total_investment_amount/(net_rent*12), 1):,}년")
-
-
-import streamlit as st
-from streamlit.components.v1 import html
-
-# 쿠팡 다이나믹 배너 iframe 삽입
-iframe_code = """
-<iframe src="https://ads-partners.coupang.com/widgets.html?id=823643&template=carousel&trackingCode=AF1208190&subId=&width=680&height=140&tsource=" 
-        width="680" 
-        height="140" 
-        frameborder="0" 
-        scrolling="no" 
-        referrerpolicy="unsafe-url">
-</iframe>
-"""
-
-# Streamlit에서 iframe 코드 삽입
-html(iframe_code, height=150)  # height는 iframe 높이와 동일하게 설정
-
-
