@@ -19,7 +19,7 @@ st.dataframe(df.head(100))
 
 # Sidebar inputs for filtering
 st.sidebar.header("검색 조건")
-type = st.sidebar.selectbox("종류", options=["아파트", "다세대/빌라", "오피스텔", "상업용기타", "주택", "근린주택", "다가구 주택", "근린상가", "근린시설"])
+type = st.sidebar.selectbox("종류", options=["아파트", "다세대/빌라", "오피스텔", "상업용기타", "주택", "근린주택", "다가구 주택", "근린상가", "근린시설", '근생빌라'])
 region = st.sidebar.selectbox("지역", options=["서울", "경기", "인천"])
 
 
