@@ -19,13 +19,14 @@ st.dataframe(df.head(100))
 
 # Sidebar inputs for filtering
 st.sidebar.header("검색 조건")
-type = st.sidebar.selectbox("종류", options=["아파트", "다세대/빌라", "오피스텔", "상업용기타", "주택", "근린주택", "다가구 주택", "근린상가", "근린시설", '근생빌라'])
+type_option = df['물건 종류'].dropna().unique()
+type = st.sidebar.selectbox("종류", type_option)
 region = st.sidebar.selectbox("지역", options=["서울", "경기", "인천"])
 
 
 
-# 선택한 "지역"에 따라 "시/구" 필터링
-region_filtered_df = df[df['지역'] == region]  # "지역" 열을 기준으로 필터링
+# 선택한 ""에 따라 "시/구" 필터링
+region_filtered_df = df[df['도/시'] == region]  # "지역" 열을 기준으로 필터링
 region1_options = sorted(region_filtered_df['시/구'].dropna().unique())  # "시/구" 값 정렬
 
 # "시/구" 선택 박스 생성
