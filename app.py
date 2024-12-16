@@ -20,7 +20,7 @@ st.dataframe(df.head(100))
 # Sidebar inputs for filtering
 st.sidebar.header("검색 조건")
 type_option = df['물건 종류'].dropna().unique()
-type = st.sidebar.selectbox("종류", type_option)
+type = st.sidebar.selectbox("물건 종류", type_option)
 region = st.sidebar.selectbox("지역", options=["서울", "경기", "인천"])
 
 
