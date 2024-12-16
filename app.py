@@ -41,8 +41,8 @@ region2_options = ["전체"] + sorted(region1_filtered_df['구/동'].dropna().un
 region2 = st.sidebar.selectbox("구/동를 선택하세요", region2_options)
 
 
-# 인수액 필터링 조건 설정
-options = st.sidebar.multiselect("인수액 조건", options=["인수액 : 없음", "임차인현황 자료가 없습니다."])
+# # 인수액 필터링 조건 설정
+# options = st.sidebar.multiselect("인수액 조건", options=["인수액 : 없음", "임차인현황 자료가 없습니다."])
 
 # Session state 초기화
 if "filtered_data" not in st.session_state:
@@ -76,7 +76,7 @@ if st.sidebar.button("검색"):
 
 # 필터링된 데이터 표시
 if st.session_state["filtered_data"] is not None:
-    st.header("인수액이 없는 경매 물건 리스트")
+    st.header("권리상의 하자가 없는 물건 리스트")
     st.dataframe(st.session_state["filtered_data"])
     
     # 필터링된 데이터의 행 수 출력
