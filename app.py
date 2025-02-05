@@ -249,7 +249,7 @@ col1, col2 = st.columns([1,2])
 col1.subheader("수익률 계산")
 
 
-if rate_of_return >= 25:
+if rate_of_return >= 22:
     col2.subheader("훌륭한 가격입니다!😆")
 
 elif rate_of_return >= 18:
