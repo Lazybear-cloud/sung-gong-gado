@@ -19,8 +19,8 @@ st.dataframe(df.head(100))
 
 # Sidebar inputs for filtering
 st.sidebar.header("검색 조건")
-type_option = df['종류'].dropna().unique()
-type = st.sidebar.selectbox("종류", type_option)
+type_option = df['물건 종류'].dropna().unique()
+type = st.sidebar.selectbox("물건 종류", type_option)
 region = st.sidebar.selectbox("지역", options=["서울", "경기", "인천"])
 
 
@@ -53,7 +53,7 @@ if st.sidebar.button("검색"):
     
     # 조건을 동적으로 구성하여 입력된 값에 맞게 필터링
     filtered_data = df[
-        (df["종류"].astype(str).str.contains(type, case=False, na=False)) &
+        (df["물건 종류"].astype(str).str.contains(type, case=False, na=False)) &
         (df["도/시"].astype(str).str.contains(region, case=False, na=False)) &
         (df["시/구"].astype(str).str.contains(region1, case=False, na=False)) &
         ((True if region2 == "전체" else df["구/동"].astype(str).str.contains(region2, case=False, na=False))) 
