@@ -337,7 +337,7 @@ col3.markdown(f'<p style="color:green; font-weight:bold;">총 투자금액 : {To
 col3.write(f"순월세 : {net_rent:,}원/월")
 
 if rate_of_return >= 20:
-    col3.markdown(f'<p style="color:red;">월세 수익률 : {rate_of_return:,}%</p>', unsafe_allow_html=True)
+    col3.markdown(f'<p style="color:red; font-weight:bold;">월세 수익률 : {rate_of_return:,}%</p>', unsafe_allow_html=True)
 
 elif rate_of_return < 20:
     col3.markdown(f'<p style="color:blue; font-weight:bold;">월세 수익률 : {rate_of_return:,}%</p>', unsafe_allow_html=True)
